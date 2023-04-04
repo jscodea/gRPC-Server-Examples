@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcExample.Protos";
+
+package some;
+
+service Some {
+  rpc SaySomething (SmtRequest) returns (SmtReply);
+}
+
+message SmtRequest {
+  string name = 1;
+}
+
+message SmtReply {
+  string messageAAAA = 1;
+  string dsadfdsfssadasdas = 1;
+}

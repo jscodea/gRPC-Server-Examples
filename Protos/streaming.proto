@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcExample.Protos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+package streaming;
+
+service Streaming {
+  rpc SayHelloPeriodically (HelloStreamingRequest) returns (stream HelloStreamingReply);
+  rpc ComposeHellos (stream HelloStreamingRequest) returns (MultiHelloStreamingReply);
+  rpc CollectLocations (stream SendLocationRequest) returns (google.protobuf.Empty);
+}
+
+message HelloStreamingRequest {
+  string name = 1;
+  string surname = 2;
+}
+
+message HelloStreamingReply {
+  string message = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message MultiHelloStreamingReply {
+  repeated HelloStreamingReply hello = 1;
+}
+
+message SendLocationRequest {
+	string location = 1;
+}
